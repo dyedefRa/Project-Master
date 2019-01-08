@@ -1,0 +1,5 @@
+ISS e site baglayýp Hosting yapma =>
+1) ISS e site olustur
+2) C:\Windows\System32\drivers\etc\hosts dosyasýnýn içine url adý ve url 
+------------------------------------
+TFS giriþ.

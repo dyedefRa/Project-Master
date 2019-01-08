@@ -1,0 +1,4 @@
+Visual Studio yu Yonetýcý olarak calýstýr.
+
+Dubug > Attach to Project > UserName : IIS APPPOOL
+Kýsayolu Ctrl+Shift +p ?
