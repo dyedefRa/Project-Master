@@ -1,0 +1,114 @@
+<div>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-6">
+                <div id="container"></div>
+            </div>
+
+            <div class="col-md-6">
+                <div id="container3"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-offset-3">
+                <div id="container2"></div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="~/Assets/js/jquery-2.1.4.min.js"></script>
+<script>
+    var monthlySeries = [];
+    $(document).ready(function () {
+        
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("GetDailyWastageForMonth","Home")',
+            dataType: 'json',
+            success: function (data) {
+                monthlySeries = [{
+                    type: 'pie',
+                    name: 'Kayýp',
+                    data: data
+                }];
+               
+
+                createChart("container", "@currentMonthString", monthlySeries);
+            }
+        });
+        
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("GetProductlyWastageForDay", "Home")',
+            dataType: 'json',
+            success: function (data) {
+                productlySeries = [{
+                    type: 'pie',
+                    name: 'Kayýp',
+                    data: data
+                }];
+               
+
+                createChart("container2", "@lastDayString", productlySeries);
+            }
+        });
+         $.ajax({
+            type: 'GET',
+            url: '@Url.Action("GetMonthlyWastageForYear", "Home")',
+            dataType: 'json',
+            success: function (data) {
+                yearlySeries = [{
+                    type: 'pie',
+                    name: 'Kayýp',
+                    data: data
+                }];
+               
+
+                createChart("container3","@yearString", yearlySeries);
+            }
+        });
+    });
+
+    function createChart(chartContainer, title, series) {
+
+        Highcharts.chart(chartContainer, {
+            chart: {
+            type: 'pie'
+            },
+            credits: {
+                enabled: false
+            },
+            title: {
+                text: title
+            },
+            exporting: {
+                enabled: false
+            },
+            tooltip: {
+                pointFormat: '{series.name}:<b>{point.absolute}{point.y}<b> <br>{point.percentage:.1f}%'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f}%',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: series
+        });
+    }
+  
+  
+</script>
