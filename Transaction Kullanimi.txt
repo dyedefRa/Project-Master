@@ -1,0 +1,20 @@
+public bool SaveAllDataForPastCalculate(DateTime startDate, DateTime endDate)
+        {
+            bool status = false;
+            using (TransactionScope st = new TransactionScope())
+            {
+                var tankCalculate = SaveTankActionPastCalculate(startDate, endDate);
+                var inventoryalculate = SaveInvertoryPastCalculate(startDate, endDate);
+                var wastageCalculate = SaveWastageReasonsPastCalculate(startDate, endDate);
+                var pivotCalculate = SaveTankActionPivotPastCalculate(startDate, endDate);
+                if (tankCalculate && inventoryalculate & wastageCalculate & pivotCalculate)
+                {
+                    status = true;
+                    st.Complete();
+
+                }
+
+            }
+            return status;
+            //
+        }
