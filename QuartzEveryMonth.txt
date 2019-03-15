@@ -1,0 +1,11 @@
+   s.ScheduleQuartzJob(job =>
+                    {
+                        job
+                            .WithJob(() => JobBuilder.Create<MonyhlyAuditorDetailMailSender>().Build())
+                            .AddTrigger(
+                                () =>
+                                    TriggerBuilder.Create()
+                                        .WithIdentity("trigger", "SosyalUyumlulukFirstGroup")
+                                           .WithCronSchedule("0 0 12 1 * ? *")
+                                          .Build());
+                    });
