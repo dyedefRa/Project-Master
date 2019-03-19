@@ -1,0 +1,24 @@
+   private DataTable MonthlyAuditorDetailsExcel(IEnumerable<MonthlyAuditDetailModel> items)
+        {
+            //DataTable monthlyAuditor = new DataTable(_localizationService.Translate("MontlyAuditorDetails", culture));
+            DataTable monthlyAuditor = new DataTable();
+            monthlyAuditor.Columns.Add("FirstName");
+            monthlyAuditor.Columns.Add("LastName");
+            monthlyAuditor.Columns.Add("Roles");
+            monthlyAuditor.Columns.Add("Count");
+
+
+            foreach (var item in items)
+            {
+                var newRow = monthlyAuditor.NewRow();
+                newRow[0] = item.FirstName;
+                newRow[1] = item.LastName;
+                newRow[2] = item.Roles;
+                newRow[3] = item.Count;
+
+                monthlyAuditor.Rows.Add(newRow);
+            }
+
+            return monthlyAuditor;
+
+        }

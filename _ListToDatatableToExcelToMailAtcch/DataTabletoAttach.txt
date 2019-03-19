@@ -1,0 +1,46 @@
+    DataTable dt = MonthlyAuditorDetailsExcel(auditorList);
+            
+            dt.TableName = "datatableName";
+
+            //Create a New Workbook.
+            using (XLWorkbook wb = new XLWorkbook())
+            {
+               
+                wb.Worksheets.Add(dt);
+
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                  
+                    wb.SaveAs(memoryStream);
+
+                    
+                    byte[] bytes = memoryStream.ToArray();
+                    memoryStream.Close();
+
+                    
+                    using (MailMessage mm = new MailMessage())
+                    {
+                        mm.Subject = "GridView Exported Excel";
+                        mm.Body = "GridView Exported Excel Attachment";
+
+                        //Add Byte array as Attachment.
+                        mm.Attachments.Add(new Attachment(new MemoryStream(bytes), "AtName.xlsx"));
+                        mm.IsBodyHtml = true;
+                        
+                        mm.From = new MailAddress("crazy_crazy.46@hotmail.com");
+                        mm.To.Add("bkztrk@gmail.com");
+              
+                        SmtpClient client = new SmtpClient
+                        {
+                            Port = 587,
+                            EnableSsl = true,
+                           
+                            UseDefaultCredentials = false,
+                            Host = "smtp.live.com",
+                            Credentials = new NetworkCredential("crazy_crazy.46@hotmail.com", "29723210084a")
+                        };
+                        client.Send(mm);
+
+                    }
+                }
+            }
