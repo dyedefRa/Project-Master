@@ -1,0 +1,30 @@
+OLMAZSA BUNA BAK => $('#bip-messages-incoming').on('click', '.messageDraftItemTarget', function (e) {
+
+
+
+mmessage.detail.detailData.toUsers
+
+EKLEME 
+ $('#ToIdsDiv').append('<span class="bip-message-to-user" data-id="' + id + '"><a href="#">' + name + ' <span class="bip-icon icon-cikis" data-type="CC"></span> </a><input type="hidden" name="Ids[]" value="' + id + '"/></span>');
+
+
+
+SILME
+ mmessage.sendMessageUserIds.splice(index, 1);
+          
+            $('#ToIdsDiv').find('span[data-id="' + id + '"]').remove();
+
+
+
+
+            mmessage.newMessage.sendMessageAddUserTo(data.detail.UserId, data.detail.Firstname + ' ' + data.detail.Lastname);
+
+
+
+
+ $('#containerMessages4').on('change', ':checkbox', function () {
+            if (this.checked)
+                mmessage.newMessage.sendMessageAddUserTo($(this).data('id'), $(this).data('name'));
+            else
+                mmessage.newMessage.sendMessageRemoveUserTo($(this).data('id'));
+        });
