@@ -1,0 +1,9 @@
+https://www.c-sharpcorner.com/article/consuming-asp-net-web-api-rest-service-in-asp-net-mvc-using-http-client/
+
+https://www.codeproject.com/Articles/1068675/How-Do-You-Post-to-a-Web-API-Controller-from-an-MV
+
+https://www.aspsnippets.com/Articles/Call-Consume-Web-API-from-MVC-Controller-with-Parameters-in-ASPNet-MVC.aspx
+
+https://www.c-sharpcorner.com/article/web-api-crud-operations-and-consume-service-in-asp-net-mvc-application/
+7
+https://stackoverflow.com/questions/28382607/call-to-web-api-from-mvc-post-action-method-and-receive-a-result

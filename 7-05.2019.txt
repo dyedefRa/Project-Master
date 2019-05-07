@@ -1,0 +1,17 @@
+using (var client = new HttpClient())
+        {
+            client.BaseAddress = new Uri("http://localhost:64189/api/student");
+
+            //HTTP POST
+            var postTask = client.PostAsJsonAsync<StudentViewModel>("student", student);
+            postTask.Wait();
+
+            var result = postTask.Result;
+            if (result.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+
+--------
